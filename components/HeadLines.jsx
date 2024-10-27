@@ -1,30 +1,18 @@
-import React from 'react'
-import LoadingSpinner from 'react-spinners-components'
-import Marquee from 'react-fast-marquee'
-import Link from 'next/link'
+import React from 'react';
+import LoadingSpinner from 'react-spinners-components';
+import Marquee from 'react-fast-marquee';
+import Link from 'next/link';
 
 const HeadLines = ({ news }) => {
 
     const head = [
-        {
-            title: 'OnePlus 11r Solar Red with 512 GB internal storage announced'
-        },
-        {
-            title: 'OnePlus 11r Solar Red with 512 GB internal storage announced'
-        },
-        {
-            title: 'OnePlus 11r Solar Red with 512 GB internal storage announced'
-        },
-        {
-            title: 'OnePlus 11r Solar Red with 512 GB internal storage announced'
-        },
-        {
-            title: 'OnePlus 11r Solar Red with 512 GB internal storage announced'
-        },
-        {
-            title: 'OnePlus 11r Solar Red with 512 GB internal storage announced'
-        }
-    ]
+        { title: 'OnePlus 11r Solar Red with 512 GB internal storage announced' },
+        { title: 'OnePlus 11r Solar Red with 512 GB internal storage announced' },
+        { title: 'OnePlus 11r Solar Red with 512 GB internal storage announced' },
+        { title: 'OnePlus 11r Solar Red with 512 GB internal storage announced' },
+        { title: 'OnePlus 11r Solar Red with 512 GB internal storage announced' },
+        { title: 'OnePlus 11r Solar Red with 512 GB internal storage announced' }
+    ];
 
     return (
         <div className='bg-white shadow flex flex-wrap'>
@@ -39,19 +27,27 @@ const HeadLines = ({ news }) => {
                     <Marquee>
                         {
                             Object.keys(news).length > 0 &&
-                            Object.keys(news).map((c, i) => <>
-                                {
-                                    news[c].length > 0 && news[c].map((n, j) => <Link className='py-3 block font-semibold hover:text-[#c80000] pr-12 text-sm ' href={`/news/${n.slug}`} >
-                                        {n.title}
-                                    </Link>)
-                                }
-                            </>)
+                            Object.keys(news).map((c, i) => (
+                                <React.Fragment key={i}>
+                                    {
+                                        news[c].length > 0 && news[c].map((n, j) => (
+                                            <Link
+                                                key={n.slug} // Use a unique key (slug) for each news item
+                                                className='py-3 block font-semibold hover:text-[#c80000] pr-12 text-sm'
+                                                href={`/news/${n.slug}`}
+                                            >
+                                                {n.title}
+                                            </Link>
+                                        ))
+                                    }
+                                </React.Fragment>
+                            ))
                         }
                     </Marquee>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default HeadLines
+export default HeadLines;
